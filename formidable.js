@@ -22,6 +22,7 @@
         options.successClass = script.getAttribute('data-success-class');
         options.errorClass = script.getAttribute('data-error-class');
         options.action = script.getAttribute('data-action');
+        options.callback = script.getAttribute('data-callback');
         // initialize the forms
         init(options);
     };
@@ -44,6 +45,9 @@
             // hide the form
             e.target.style.display = 'none';
             e.target.parentElement.querySelector('.' + successClass).style.display = 'block';
+            if (options.callback) {
+                options.callback();
+            }
         } catch (error) {
             // hide the form
             e.target.style.display = 'none';
