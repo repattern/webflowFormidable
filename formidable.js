@@ -3,12 +3,14 @@
     var errorClass;
     var webhookURL;
     var payload = {};
+    var callback;
 
     function init(options) {
         // settings for the forms
         successClass = options.successClass || 'w-form-done';
         errorClass = options.errorClass || 'w-form-fail';
         webhookURL = options.action;
+        callback = options.callback;
         var allForms = document.querySelectorAll('form');
         // take all forms and convert them to be handled
         allForms.forEach(f => {
@@ -45,8 +47,8 @@
             // hide the form
             e.target.style.display = 'none';
             e.target.parentElement.querySelector('.' + successClass).style.display = 'block';
-            if (options.callback) {
-                options.callback();
+            if (callback) {
+                callback();
             }
         } catch (error) {
             // hide the form
