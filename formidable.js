@@ -47,8 +47,9 @@
             // hide the form
             e.target.style.display = 'none';
             e.target.parentElement.querySelector('.' + successClass).style.display = 'block';
-            if (callback) {
-                callback();
+            if (callback){
+                // callback contains the name of a function, create a function from it and call it
+                eval(callback)();
             }
         } catch (error) {
             // hide the form
